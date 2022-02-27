@@ -41,13 +41,11 @@ wo.relativenumber = true
 wo.signcolumn = 'number'
 wo.wrap = false
 
---vim.g.mapleader = ' '
---vim.b.mapleader = ' '
-vim.g.python3_host_prog="/usr/local/bin/python3"
+--vim.g.python3_host_prog="/usr/local/bin/python3"
 
 wo.list = true
 
-vim.g.colors_name = 'molokai'
+--vim.g.colors_name = 'molokai'
 
 local settab = vim.opt
 

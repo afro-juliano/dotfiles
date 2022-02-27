@@ -1,10 +1,10 @@
---vim.cmd "colorscheme aurora"
+vim.g.tokyonight_style='storm'
+vim.g.tokyonight_transparent=true
+vim.g.tokyonight_transparent_sidebar=true
+vim.cmd[[colorscheme tokyonight]]
 
-local colorscheme = "aurora"
+vim.g.airline_theme='transparent'
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+vim.cmd([[au VimEnter * highlight TelescopeNormal guibg=none]])
+vim.cmd([[au VimEnter * highlight TelescopeBorder guibg=none]])
 
-if not status_ok then
-  vim.notify("colorscheme " .. colorscheme .. " not found!")
-  return
-end

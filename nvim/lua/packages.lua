@@ -8,18 +8,33 @@ if fn.empty(fn.glob(install_path)) > 0  then
    execute 'packadd packer.nvim'
 end
 
-require('packer').startup(function()
+-- General requires for general plugins
+require('packer').startup(function(use)
+  use 'akinsho/bufferline.nvim'
   use 'nvim-lua/popup.nvim'
   use 'wbthomason/packer.nvim'
   use 'tomasr/molokai'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
   use 'nvim-lua/plenary.nvim'
-  use 'hrsh7th/nvim-compe'
-  use 'neovim/nvim-lspconfig'
   use 'lunarvim/colorschemes'
   use 'folke/tokyonight.nvim'
   use 'hrsh7th/vim-vsnip'
+  use 'knubie/vim-kitty-navigator'
+  use 'mfussenegger/nvim-jdtls'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  use 'David-Kunz/cmp-npm'
+
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+-- Lsp plugins
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
 
 -- cmp plugins
   use 'hrsh7th/nvim-cmp'
@@ -27,7 +42,29 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'saadparwaiz1/cmp_luasnip'
+  use 'hrsh7th/cmp-emoji'
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use {
+    "tzachar/cmp-tabnine",
+    config = function()
+      local tabnine = require "cmp_tabnine.config"
+      tabnine:setup {
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+        run_on_every_keystroke = true,
+        snippet_placeholder = "..",
+        ignored_file_types = { -- default is not to ignore
+          -- uncomment to ignore in lua:
+          -- lua = true
+        },
+      }
+    end,
 
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  }
 -- snippets
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
