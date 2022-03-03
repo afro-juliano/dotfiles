@@ -8,6 +8,7 @@ require('lsp.lsp-ts')
 require('lsp.lua-ls')
 
 -- Requires from languages servers
+require('lualine').setup{}
 require'lspconfig'.pyright.setup{}
 require('bufferline').setup{}
 require'lspconfig'.bashls.setup{}
