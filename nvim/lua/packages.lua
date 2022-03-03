@@ -14,8 +14,6 @@ require('packer').startup(function(use)
   use 'nvim-lua/popup.nvim'
   use 'wbthomason/packer.nvim'
   use 'tomasr/molokai'
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
   use 'nvim-lua/plenary.nvim'
   use 'lunarvim/colorschemes'
   use 'folke/tokyonight.nvim'
@@ -25,6 +23,11 @@ require('packer').startup(function(use)
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
   use 'David-Kunz/cmp-npm'
+
+  use {
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
 
 
   use {
