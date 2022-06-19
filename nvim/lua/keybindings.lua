@@ -1,3 +1,7 @@
+local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+
+
 local key_mapper = function(mode, key, result)
   vim.api.nvim_set_keymap(
     mode,
@@ -9,14 +13,14 @@ end
 
 key_mapper('n', '<Space>', '<NOP>')
 
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- no hl
-key_mapper('n', '<Leader>h', ':set hlsearch!<CR>')
+key_mapper('n', '<leader>h', ':set hlsearch!<CR>')
 
 -- Nvim-tree
-key_mapper('n', '<Leader>t', ':NvimTreeToggle<CR>')
-key_mapper('n', '<Leader>f', ':NvimTreeFocus<CR>')
+key_mapper('n', '<leader>t', ':NvimTreeToggle<CR>')
+key_mapper('n', '<leader>f', ':NvimTreeFocus<CR>')
 
 --  Better window movement
 key_mapper('n', '<C-h>', '<C-w>h')
@@ -62,6 +66,8 @@ key_mapper('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})]]
 key_mapper('x', 'K', ':move \'<-2<CR>gv-gv\'')
 key_mapper('x', 'K', ':move \'>+1<CR>gv-gv\'')
 
--- TAB Complete
---key_mapper('x',  '<expr><TAB>', 'pumvisible() ? \"\\<C-n\" : \"\\<TAB>\"', {noremap = true, silent = true})
-
+-- Telescopeeeee
+key_mapper('x',  '<expr><TAB>', 'pumvisible() ? \"\\<C-n\" : \"\\<TAB>\"')
+keymap("n", "<leader>xx", "<cmd>Telescope find_files<cr>", opts)
+keymap('n','<leader>xf', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap('n', '<c-t>', '<cmd>Telescope live_grep<cr>', opts)

@@ -1,10 +1,10 @@
-vim.g.tokyonight_style='storm'
-vim.g.tokyonight_transparent=true
-vim.g.tokyonight_transparent_sidebar=true
-vim.cmd[[colorscheme tokyonight]]
+local colorscheme = "darkplus"
 
-vim.g.airline_theme='transparent'
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+  vim.notify("colorscheme " .. colorscheme .. " not found!")
+  return
+end
 
-vim.cmd([[au VimEnter * highlight TelescopeNormal guibg=none]])
-vim.cmd([[au VimEnter * highlight TelescopeBorder guibg=none]])
+vim.g.lualine_theme='tomorrow'
 

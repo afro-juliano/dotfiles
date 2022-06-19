@@ -37,20 +37,17 @@ o.expandtab = true
 bo.expandtab = true
 
 wo.number = true
-wo.relativenumber = true
+wo.relativenumber = false
 wo.signcolumn = 'number'
 wo.wrap = false
 
---vim.g.python3_host_prog="/usr/local/bin/python3"
+vim.g.python3_host_prog="/usr/local/bin/python3"
 
 wo.list = true
 
---vim.g.colors_name = 'molokai'
-
+-- autoindent vim airline
 local settab = vim.opt
 
--- autoindent vim airline
-vim.opt.cursorline = true
-vim.opt.autoindent = true
-vim.opt.autowrite = true
-
+settab.cursorline = true
+settab.autoindent = true
+settab.autowrite = true

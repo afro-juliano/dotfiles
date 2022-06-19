@@ -1,18 +1,19 @@
 -- Requires from files needed to work
-require('packages')
-require('config')
-require('colorscheme')
-require('nv-cmp.cmp')
-require('keybindings')
-require('lsp.lsp-ts')
-require('lsp.lua-ls')
+require("packages")
+require("config")
+require("colorscheme")
+require("nv-cmp")
+require("keybindings")
+require("gps")
+require("lsp")
+require("autopairs")
+require("treesitter")
+require("debug")
+require("illuminate-me")
+require("telescope")
+require("lualine").setup{}
+require("nvim-tree").setup{}
+require("bufferline").setup{}
 
 -- Requires from languages servers
-require('lualine').setup{}
-require'lspconfig'.pyright.setup{}
-require('bufferline').setup{}
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.jdtls.setup {'java-linux-ls'}
-require'lspconfig'.cssls.setup{}
-require'lspconfig'.eslint.setup{}
-
+require("lspconfig").jdtls.setup {'java-linux-ls'}
