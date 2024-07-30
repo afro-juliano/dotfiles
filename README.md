@@ -1,2 +1,2 @@
 # dotfiles
-nvim configuration files, and some other nerd stuff
+Emacs configuration files, and nvim old configuration.
