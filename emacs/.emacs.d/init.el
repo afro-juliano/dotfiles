@@ -1,6 +1,7 @@
 ;; load my configuration path
 (add-to-list 'load-path "~/.emacs.d/config/")
 
+
 ;; Load my files from config directory
 (require 'gui-config)
 (require 'melpa-config)
@@ -8,20 +9,25 @@
 (require 'markdown-config)
 (require 'code-config)
 
+
 (use-package try
   :ensure t)
+
 
 ;; Indenting in 4 spaces
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+
 (use-package which-key
   :ensure t
   :config (which-key-mode))
 
+
 (use-package all-the-icons
   :ensure t)
+
 
 (use-package neotree
   :ensure t
@@ -31,13 +37,16 @@
     (setq neo-smart-open t))
   :bind (("C-\\" . 'neotree-toggle))) ;; atom key
 
+
 (use-package toml-mode
   :ensure t)
+
 
 ;; Emojisn
 (use-package emojify
   :ensure t
   :hook (after-init . global-emojify-mode))
+
 
 ;; auto-complete
 ;; snippets for autocomplete
@@ -45,6 +54,7 @@
   :ensure t)
 
 (yas-global-mode 1)
+
 
 ;; company auto complete library
 (use-package company
@@ -54,9 +64,11 @@
 	company-minimun-prefix-length 1)
   (global-company-mode t))
 
+
 ;; space line
 (use-package spaceline
   :ensure t)
+
 
 (use-package vterm
   :ensure t
@@ -65,10 +77,12 @@
 	("C-s-v" . vterm-yank)
 	("C-s-c" . vterm-copy-mode)))
 
+
 (use-package vterm-toggle
   :ensure t
   :config
   :bind ("C-c t" . vterm))
+
 
 ;; Move text
 (global-unset-key (kbd "C-<up>"))
@@ -80,6 +94,7 @@
     (global-set-key (kbd "C-<up>") 'move-text-up)
     (global-set-key (kbd "C-<down>") 'move-text-down)))
 
+
 ;; Docker integration
 (use-package docker
   :ensure t
@@ -87,12 +102,14 @@
   (add-hook 'dockerfile-mode t)
   :bind ("C-c d" . docker))
 
+
 ;; Docker compose mode
 (use-package docker-compose-mode
   :ensure t)
 
 (use-package dockerfile-mode
   :ensure t)
+
 
 ;; Yaml mode
 (use-package yaml-mode
@@ -103,6 +120,7 @@
                (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
+
 ;; flycheck yamlint
 (use-package flycheck-yamllint
   :ensure t
@@ -112,22 +130,6 @@
     (eval-after-load 'flycheck
       '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
 
-
-;; Terraform
- (use-package terraform-mode
-  ;; if using straight
-  ;; :straight t
-
-  ;; if using package.el
-  ;; :ensure t
-  :custom (terraform-indent-level 4)
-  :config
-  (defun my-terraform-mode-init ()
-    ;; if you want to use outline-minor-mode
-    ;; (outline-minor-mode 1)
-    )
-
-  (add-hook 'terraform-mode-hook 'my-terraform-mode-init))
 
 ;; Buffer tabs
 (use-package centaur-tabs
@@ -167,6 +169,23 @@
 (global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
 
+;; Terraform
+ (use-package terraform-mode
+  ;; if using straight
+  ;; :straight t
+
+  ;; if using package.el
+  ;; :ensure t
+  :custom (terraform-indent-level 4)
+  :config
+  (defun my-terraform-mode-init ()
+    ;; if you want to use outline-minor-mode
+    ;; (outline-minor-mode 1)
+    )
+
+  (add-hook 'terraform-mode-hook 'my-terraform-mode-init))
+
+
 ;; Theme
 (use-package catppuccin-theme
   :ensure t
@@ -179,6 +198,7 @@
 (use-package spaceline-config
   :config
   (spaceline-emacs-theme))
+
 
 ;; Flycheck syntax checker
 (use-package flycheck
@@ -199,6 +219,7 @@
    (setq flycheck-python-flake8-executable "~/.local/bin/flake8"
 	 flycheck-python-pylint-executable "~/.local/bin/pylint")
    )
+
 
 ;; Spell
 (setq 
@@ -222,15 +243,19 @@
 (use-package flycheck-inline
   :ensure t)
 
+
 (with-eval-after-load 'flycheck
   (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+
 
 ;; Git config
 (use-package magit
   :ensure t)
 
+
 (use-package diff-hl
   :ensure t)
+
 
 ;; Project organization
 (use-package projectile
@@ -261,8 +286,8 @@
                       (flycheck-add-next-checker 'python-flake8 '(warning . python-pylint))
                       (message "Added flycheck checkers.")))))
 
-;; ----- lsp
 
+;; ----- lsp
 (use-package lsp-ui
   :ensure t
   :hook (lsp-mode . lsp-ui-mode)
@@ -273,6 +298,7 @@
 
 (require 'lsp-diagnostics)
 (lsp-diagnostics-flycheck-enable)
+
 
 ;; Go - lsp-mode
 ;; Set up before-save hooks to format buffer and add/delete imports.
@@ -294,9 +320,11 @@
   (add-to-list 'exec-path "~/go/bin")
   (setq gofmt-command "goimports"))
 
+
 ;; Flycheck for golangci
 (eval-after-load 'flycheck                                       
   '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+
 
 (use-package flycheck-golangci-lint
   :ensure t
@@ -306,18 +334,22 @@
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
+
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
+
 ;; Start LSP Mode and YASnippet mode
 (add-hook 'go-mode-hook #'lsp-deferred)
 (add-hook 'go-mode-hook #'yas-minor-mode)
 
+
 ;; emojis and hl, flyspell
 (add-hook 'after-init-hook #'global-emojify-mode)
 (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
+
 
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
 ; install hunspell-pt-br on aur
